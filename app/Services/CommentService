@@ -1,0 +1,16 @@
+<?php
+namespace App\Services;
+use App\Repositories\CommentRepository;
+
+class CommentService{
+    public function __construct(private CommentRepository $repo){}
+
+    public function create($postId,$content){
+
+        return $this->repo->create([
+            'post_id'=>$postId,
+            'user_id'=>auth()->id(),
+            'content'=> $content
+        ]);
+    }
+}

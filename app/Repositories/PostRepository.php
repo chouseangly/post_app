@@ -23,14 +23,27 @@ class PostRepository
             $stored = $this->imageStorage->store($image);
 
             $post->images()->create([
-                'cid' => $stored['cid'],
-                'gateway_url' => $stored['url'],
+                'img_url' => $stored['url'], // Use 'url' from the storage service
             ]);
         }
     }
 
     public function all()
-{
-   return Post::with('latestFiveImages')->latest()->get();
-}
+    {
+        return Post::with('latestFiveImages')->first()->get();
+    }
+
+    public function updatePost(int $id, array $data): Post
+    {
+        $post = Post::findOrFail($id);
+        $post->update($data);
+        return $post;
+    }
+
+    public function delete($id){
+        $post = Post::findOrFail($id);
+       return $post->delete();
+    }
+
+
 }
