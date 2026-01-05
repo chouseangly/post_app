@@ -27,6 +27,7 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken; //
 
         return response()->json([
+            'data' =>$user,
             'access_token' => $token,
             'token_type' => 'Bearer',
         ], 201);
@@ -49,9 +50,10 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken; //
 
         return response()->json([
+            'data' =>$user,
             'access_token' => $token,
             'token_type' => 'Bearer',
-        ]);
+        ], 201);
     }
 
     public function logout(Request $request)

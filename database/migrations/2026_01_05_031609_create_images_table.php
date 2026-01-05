@@ -11,19 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
+        // Change 'images' to 'post_images'
+        Schema::create('post_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('image_url');
+            $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete(); // Links to posts table
+            $table->string('img_url');   // For Pinata URL
             $table->timestamps();
         });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('post_images');
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-        Schema::dropIfExists('images');
-    }
 };

@@ -31,6 +31,6 @@ class PostRepository
 
     public function all()
 {
-    return Post::with('images')->latest()->get(); //
+   return Post::with('latestFiveImages')->latest()->get();
 }
 }

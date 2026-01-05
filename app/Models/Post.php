@@ -18,5 +18,9 @@ class Post extends Model
         return $this->hasMany(PostImage::class);
     }
 
+    public function latestFiveImages() {
+    return $this->hasMany(PostImage::class)->limit(5);
+}
+
 
 }
