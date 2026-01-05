@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Repositories;
+
 use App\Models\Post;
 use App\Repositories\ImageStorage\ImageStorageInterface;
 
@@ -26,4 +28,9 @@ class PostRepository
             ]);
         }
     }
+
+    public function all()
+{
+    return Post::with('images')->latest()->get(); //
+}
 }

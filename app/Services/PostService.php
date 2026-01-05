@@ -1,5 +1,8 @@
 <?php
 
+namespace App\Services;
+
+use App\Repositories\PostRepository;
 use Illuminate\Support\Facades\DB;
 
 class PostService
@@ -22,5 +25,9 @@ class PostService
 
             return $post->load('images');
         });
+    }
+
+    public function getAllPost(){
+        return $this->repo->all();
     }
 }
